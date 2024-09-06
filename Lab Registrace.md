@@ -65,7 +65,7 @@ Inflating remote connection
 
 -   A zadejte jméno a heslo
 
-    -   Jméno: **tester**
+    -   Jméno: **DataTester**
 
     -   Heslo: **Superstar68**
 
@@ -83,4 +83,4 @@ PIN OK \@joyfulcraftsmen.com Cancel
 
  
 ![Machine generated alternative text: Joyful Craft\$hlen p Type here to
-search ](Images/media/i8.jpeg)
+search ](Images/media/i8.png)
