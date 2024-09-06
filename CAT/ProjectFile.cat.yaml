@@ -1,0 +1,67 @@
+Data Sources:
+#--------------------------------------------------------------------------------#
+  - 
+    Name: AW
+    Provider: SqlServer@1
+    Connection String: Data Source=sql-qalab.database.windows.net;Uid=tester;Pwd=Superstar68;Initial Catalog=AdventureWorks2019;
+  - 
+    Name: AWDW
+    Provider: SqlServer@1
+    Connection String: Data Source=sql-qalab.database.windows.net;Uid=tester;Pwd=Superstar68;Initial Catalog=AdventureWorksDW2019;
+#--------------------------------------------------------------------------------#   
+Named sets: ### tady definujeme metadata 
+  - 
+   Name: sales_staging_tables
+   Data Source: AW
+   Query: >
+      SELECT * FROM INFORMATION_SCHEMA.TABLES 
+      WHERE TABLE_TYPE = 'BASE TABLE' 
+      AND TABLE_SCHEMA  IN ('Sales') 
+
+#--------------------------------------------------------------------------------#
+Tests:
+  -
+    Metadata: sales_staging_tables
+    Name: 'Table %TABLE_SCHEMA%.%TABLE_NAME% is not empty'
+    Description: This test check that tables are not empty
+    Data Source: AW
+    Query: >
+      SELECT *
+      FROM %TABLE_SCHEMA%.%TABLE_NAME%
+    Expectation: set is not empty
+#--------------------------------------------------------------------------------#
+  -
+    Test Suite: Smoke test
+    Order: 1
+    Test Case: Sales.CreditCard
+    Test Name: Len of Card Number
+    Description: Checks whether a card number has the required lenght
+    Data Source: AW
+    Query: >
+      SELECT CardNumber 
+      FROM [Sales].[CreditCard]
+      WHERE LEN(CardNumber) <> 14
+    Expectation: set is empty
+#--------------------------------------------------------------------------------#
+  -
+    Test Suite: Integration test
+    Order: 2
+    Test Case: Sales.SalesOrderHeader x dbo.FactInternetSales
+    Test Name: Count of rows
+    Description: We compare count of rows in InternetSales (between staging and fact table)
+    First Data Source: AW
+    First Query: >
+      SELECT COUNT(*)  FROM [Sales].[SalesOrderHeader] H 
+      JOIN Sales.SalesOrderDetail D 
+      ON D.SalesOrderID = H.SalesOrderID 
+      WHERE OnlineOrderFlag = 1
+    Second Data Source: AWDW
+    Second Query: > 
+      SELECT COUNT(*) 
+      FROM [dbo].[FactInternetSales]
+    Expectation: sets match
+    Maximum Errors Logged: 50
+#--------------------------------------------------------------------------------#
+
+
+Output: xlsx ## V tomto formátu se zapíší výsledky testů. Soubor se automaticky vytvoří v adresáři, kde je náš projekt
