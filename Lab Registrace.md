@@ -35,10 +35,11 @@ Tento problém vyřešíme tím, že nám dáte vědět (ideálně do chatu) sv�
 
 -   Klikněte na náš lab - stáhne se vám .rdp soubor
 
--   Na tento klikněte také
-
-
 ![](Images/media/i4.png)
+
+-   Na .rdp soubor klikněte také
+
+![](Images/media/i4a.png)
 
 -   Potvrďte další dialogy přihlášení
 
