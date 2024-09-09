@@ -15,7 +15,6 @@ CAT Dokumentace
 [CAT](https://docs.justcat.it/docs/what-is-cat/introduction/)
 
 
-Budeme moc rádi, když nám dáte feedback jak moc se vám dnešní workshop
-líbil
+CAT PowerShell commands
 
-[Feedback](https://forms.office.com/r/dHKnXc66SW)
+[CAT](https://docs.justcat.it/docs/help/powershell-module/list-of-commands/)
