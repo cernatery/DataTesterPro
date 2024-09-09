@@ -17,4 +17,4 @@ CAT Dokumentace
 
 CAT PowerShell commands
 
-[CAT](https://docs.justcat.it/docs/help/powershell-module/list-of-commands/)
+[PowerShell](https://docs.justcat.it/docs/help/powershell-module/list-of-commands/)
